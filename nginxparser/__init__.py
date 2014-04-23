@@ -19,11 +19,11 @@ class NginxParser(object):
     location = CharsNotIn("{};,     ")
 
     # rules
-    assignment = (key + Optional(Optional(space + tilde) + space + value) + semicolon)
+    assignment = (key + Optional(space + value) + semicolon)
     block = Forward()
 
     block << Group(
-        Group(key + Optional(space + location))
+        Group(key + Optional(Optional(space + tilde) + space + location))
         + left_bracket
         + Group(ZeroOrMore(Group(assignment) | block))
         + right_bracket)
