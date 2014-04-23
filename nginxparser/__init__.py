@@ -12,13 +12,14 @@ class NginxParser(object):
     left_bracket = Literal("{").suppress()
     right_bracket = Literal("}").suppress()
     semicolon = Literal(";").suppress()
+	tilde = Literal("~").supress()
     space = White().suppress()
     key = Word(alphanums + "_/")
     value = CharsNotIn("{};,")
     location = CharsNotIn("{};,     ")
 
     # rules
-    assignment = (key + Optional(space + value) + semicolon)
+    assignment = (key + Optional(Optional(space + tilde) + space + value) + semicolon)
     block = Forward()
 
     block << Group(
