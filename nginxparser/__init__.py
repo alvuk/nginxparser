@@ -12,7 +12,7 @@ class NginxParser(object):
     left_bracket = Literal("{").suppress()
     right_bracket = Literal("}").suppress()
     semicolon = Literal(";").suppress()
-	tilde = Literal("~").supress()
+    tilde = Literal("~").supress()
     space = White().suppress()
     key = Word(alphanums + "_/")
     value = CharsNotIn("{};,")
