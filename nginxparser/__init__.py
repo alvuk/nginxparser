@@ -12,7 +12,11 @@ class NginxParser(object):
     left_bracket = Literal("{").suppress()
     right_bracket = Literal("}").suppress()
     semicolon = Literal(";").suppress()
+<<<<<<< HEAD
     tilde = Literal("~").supress()
+=======
+    tilde = Literal("~").suppress()
+>>>>>>> dcc7f34... Test commit: fix for location regex parse problem
     space = White().suppress()
     key = Word(alphanums + "_/")
     value = CharsNotIn("{};,")
