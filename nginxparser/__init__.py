@@ -12,10 +12,10 @@ class NginxParser(object):
     left_bracket = Literal("{").suppress()
     right_bracket = Literal("}").suppress()
     semicolon = Literal(";").suppress()
-    tilde = Literal("~").suppress()
+    locationMatcher = Regex("^(=|~|~\*|\^~)$")
     space = White().suppress()
     key = Word(alphanums + "_/")
-    value = CharsNotIn("{};,")
+    value = Word(Optional("~ ") + CharsNotIn("{};,"))
     location = CharsNotIn("{};,     ")
 
     # rules
@@ -23,7 +23,7 @@ class NginxParser(object):
     block = Forward()
 
     block << Group(
-        Group(key + Optional(Optional(space + tilde) + space + location))
+        Group(key + Optional(Optional(space + locationMatcher) + space + location))
         + left_bracket
         + Group(ZeroOrMore(Group(assignment) | block))
         + right_bracket)
