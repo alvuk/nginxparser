@@ -1,6 +1,6 @@
 from pyparsing import (
     Literal, White, Word, alphanums, CharsNotIn, Forward, Group, 
-    Optional, OneOrMore, ZeroOrMore, pythonStyleComment)
+    Optional, OneOrMore, ZeroOrMore, pythonStyleComment, Regex)
 
 
 class NginxParser(object):
